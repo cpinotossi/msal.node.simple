@@ -8,6 +8,78 @@ products:
 description: "Add authentication to a Node.js web application with the Microsoft Authentication Library for Node.js (MSAL Node)."
 urlFragment: "quickstart-v2-nodejs-webapp-msal"
 ---
+# MyNotes
+// https://login.microsoftonline.com/0ba83d3d-0644-4916-98c0-d513e10dc917/saml2
+
+Client Secret ID b07d5606-79c6-462a-8c70-eaef53a7d7aa, Name secret20210505
+
+Good overview of all the different types of how to log in with javascript.
+https://github.com/Azure/azure-sdk-for-js/blob/hotfix/identity_1.3.0/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-a-user-account-with-auth-code-flow
+
+
+HTTP/1.1 302 Found
+X-Powered-By: Express
+Location: https://login.microsoftonline.com/0ba83d3d-0644-4916-98c0-d513e10dc917/oauth2/v2.0/authorize?client_id=a9757c24-0199-40a0-bac5-5ed80c87d5c8&scope=user.read%20openid%20profile%20offline_access&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fredirect&client-request-id=7cb5b09b-4685-4378-b811-54215a027e59&response_mode=query&response_type=code&x-client-SKU=msal.js.node&x-client-VER=1.0.0&x-client-OS=win32&x-client-CPU=x64&client_info=1&login_hint=peter.parker@myedge.org
+Vary: Accept
+Content-Type: text/html; charset=utf-8
+Content-Length: 1068
+Date: Fri, 07 May 2021 11:10:35 GMT
+Connection: keep-alive
+
+https://login.microsoftonline.com/0ba83d3d-0644-4916-98c0-d513e10dc917/oauth2/v2.0/authorize?
+client_id=a9757c24-0199-40a0-bac5-5ed80c87d5c8&
+scope=user.read%20openid%20profile%20offline_access&
+redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fredirect&
+client-request-id=7cb5b09b-4685-4378-b811-54215a027e59&
+response_mode=query&
+response_type=code&
+x-client-SKU=msal.js.node&
+x-client-VER=1.0.0&
+x-client-OS=win32&
+x-client-CPU=x64&
+client_info=1&
+login_hint=peter.parker@myedge.org
+
+
+POST /0ba83d3d-0644-4916-98c0-d513e10dc917/login HTTP/1.1
+Host: login.microsoftonline.com
+Upgrade-Insecure-Requests: 1
+Cookie: buid=0.AXoAPT2oC0QGFkmYwNUT4Q3JFyR8damZAaBAusVe2AyH1ch6AAA.AQABAAEAAAD--DLA3VO7QrddgJg7WevrlVUc-JVtKRnE9J6EjIfoetvynjJT45toJ2nWO0vTx1HaASWB5wTilnMuCwN69TPn5rPMBUWxpgbHq67sAcr9ieHcxqRcxrjXpe6eJ3BDNSkgAA; fpc=Au4r39qEH5dNnq4c88KJuKPBq1ExAQAAACsXJ9gOAAAA; esctx=AQABAAAAAAD--DLA3VO7QrddgJg7WevrL5r6c5l3f-fL161sP1hIkIaxQDsWx_C3KBcfbsLvw8oGb-03_iCNRnSRTR6YFuuNG0aADb3iQzLN67xdHct_7gXmb2k_TbonaxAD1y4J0rj0umQTHqDV0j2dHLPwvvCGJDky-a3QMgHr2GLoQUuO6l_wokYG4JFuBQwS64qpl9EgAA; x-ms-gateway-slice=estsfd; stsservicecookie=estsfd; brcap=0; clrc={%2218754%22%3a[%22VIHMo6PR%22%2c%226ErwfSbM%22]}; wlidperf=FR=L&ST=1620386266910
+
+i13=0&
+login=peter.parker%40myedge.org&
+loginfmt=peter.parker%40myedge.org&
+type=11&
+LoginOptions=3&
+lrt=&
+lrtPartition=&
+hisRegion=&
+hisScaleUnit=&
+passwd=Levis502%21&
+ps=2&
+psRNGCDefaultType=&
+psRNGCEntropy=&
+psRNGCSLK=&
+canary=mrMUXuyvr%2FDfcjkkLLsyM9ktzkzqhfxrp8hz%2F243Qnw%3D3%3A1&
+ctx=rQIIAeNiNdQz0DPQYjbSM7BSSbQ0NzVPNjLRNTC0tNQ1MUg00E1KTDbVNU1NsTBItjBPMU22KBLiEpi9YWtNq1uF8w7BEMUoprrIVYxyGSUlBVb6-jn5yYk5GfnFJVamBgYG-kWpKZlFqcklOxgZLzAyvmBknMQkXpBaklqkV5BYlJ1a5JBbmZqSnqqXX5R-i4nf37G0JMMIROQXZValfmJiLSxNLapcxaxiAAHGuiASQiTDWDCwCagsKdHCOMU4RdfAzMRE18TS0EzX0iLZQDfF1NA41dAgJdnS0PwUs3ppMdABRamJKQr5Bal5mSkKBUX5aZk5qQr5aWk5mXmp8YnJyanFxTeYGS-wML5iEeNgFGCQYFBg0FAxYLbi4OCC8H6wMC5iBQaG6DORc45aGu7bL9j8nXRHheEUq35ukW9oRGllWZG-S1pyVna2j09xpa9ldklVdlVhRlpFUYFFRpW-kYlxYF65rbGV4QQ2xglswqfYeHKLE3P0sor18vJTUj-wMXawM-ziJBCyM7gYD_AyAAA1&hpgrequestid=ce14e615-2a41-4728-b7d0-3cfd92dc2400&flowToken=AQABAAEAAAD--DLA3VO7QrddgJg7WevrZweeWP4q9n7SaBhYMvCHm5S1mdpC2AiSQAvULFncewGGSMFotbx0MyT7qWFXknqvfv9ICi1hukWqB4aW4uWahe2jmptJ35WX6EBLJFwWtiHrkCHNTI9Cbi21dxoI2gdNiUpFpahqOoz2TLJB2S9f7mwoY_z1Wu1v2Ntl9GTWH1XQdAtEYlENvaDuebfbnfd9UQmVxDnuKCiLneCFlYLvRQuPhxGiOVsKGYr9idvFQALaq8Z8-A1-JcfTd99VzCti0OInHGLaA_npdpErIfbINVujR7kJIrmgSZTIxcD_VzBYONINvtw4LrTcQrHus_czraYSJzfiXrbUaQTAUELTz3Kr8sX5oI1_324CvekP9rsIR0wtnRUOLyUHsrz8Nibt199dqhOz-M3ZNmuo2fG3IsY6UWOLYePNbwQbOcEGPQhQa-C3gSKZnXF7uCmg4tkpWgkR7rrOrkUWQ3jEWx8t8j2bRt0D28Msp-ULAyYi8wMExRKPBDr9p8Zj7hwdYnmmIAA&PPSX=&
+NewUser=1&
+FoundMSAs=&
+fspost=0&
+i21=0&
+CookieDisclosure=0&
+IsFidoSupported=1&
+isSignupPost=0&
+i2=1&
+i17=&
+i18=&
+i19=431033
+
+
+http://localhost:5000/redirect?
+code=0.AXoAPT2oC0QGFkmYwNUT4Q3JFyR8damZAaBAusVe2AyH1ch6AAA.AQABAAIAAAD--DLA3VO7QrddgJg7Wevrb9enRgmpCMI9J9oFmgxn3WolsMTYLnctLWl9M6Y3Bchs6FbqOTDRLBfYcSjOgtdGkpdAWg3Jo3msAfmy-y-mLixPYMdVfLxUbhSwvPOXQ2390CQyzpajpwRagSDRPhHFaMPZF-d5DN4VtyOazdVNQYKtcZJ-PTjd5R8TDM0gsbrVTQDH_G5GKEWRyx8QwupxklhTDsmxEi-euT6eAqptDuMz27gqbRgKfmSq4uZT61uxLFoVmc0po-brv59SAZetEoC1fMWPWW19FRlsqK0g72oFuWbxuuyyOtQRhTzUYVuRQ41B3zC20Yd_Tw5nYhzPYJ7TE66IZTKfH73cp6MFyWvW93HghoJ2Fi0xC1Uxpkz5rF0vDv1VxSCtL4H9uhZ9JAVCCmHyu1SrRWDmD3Z8Eg4A73RFiv4DEZJNH6Lz3KT4vcsNP1-i367GLPkSXwif9ZQ6SwFsjZaV5Uob8OBAkvUqvH2nE7gucXeaBMWklYpXTH7mBeInJ5R_BGnyM2kcKNZIMJj_QnusZS4ukm3PGlCt6Np7TKk8uaZujcXfpNMvWnOZgPZi4Tpo3PSNS16U3URv743pP0rlMTDlCRVpuLq2MHZH-n0GI-CJskV6UnFPpWiY364olFVc6kt9q-J8qMjd-83dqjkEX6pByTt5CiAA&
+client_info=eyJ1aWQiOiI3NTkzOTljZi03YmQ4LTQ4ZjctODgyMC1iMGFiMDNkZGJlNWUiLCJ1dGlkIjoiMGJhODNkM2QtMDY0NC00OTE2LTk4YzAtZDUxM2UxMGRjOTE3In0&
+session_state=19cca67c-3438-403c-ba14-3a5ed2d8920e#
+
 
 # Add user authentication to a Node web app with MSAL
 
